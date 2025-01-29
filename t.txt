@@ -4,7 +4,7 @@ local humanoid = char.Humanoid
 local backpack = plr.Backpack
 
 local function equipMelee()
-  for i, v in pairs(backpack) do
+  for i, v in pairs(backpack:GetChildren()) do
     if v.ToolTip == "Melee" then
       humanoid:EquipTool(v)
       return v
