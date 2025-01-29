@@ -1,1 +1,25 @@
-print("i")
+local plr = game.Players.LocalPlayer
+local char = plr.Character
+local humanoid = char.Humanoid
+local backpack = plr.Backpack
+
+local function equipMelee()
+  for i, v in pairs(backpack) do
+    if v.ToolTip == "Melee" then
+      humanoid:EquipTool(v)
+      return v
+    end
+  end
+end
+
+local function autoFarmTest()
+  local meleeTool = equipMelee()
+  local enemiesFile = workspace:FindFirstChild("Enemy")
+  if enemiesFile then
+    meleeTool.RemoteEvent:FireServer(enemiesFile.Diamond:GetBoundingBox())
+  end
+end
+
+while task.wait(1) do
+  autoFarmTest()
+end
